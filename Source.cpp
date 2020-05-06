@@ -111,7 +111,7 @@ void Employer::input_emplo_info()
     cin >> profession;
     cout << "Enter hours for month: ";
     cin >> hours;
-    cout << "Enter payment for hout: ";
+    cout << "Enter payment for hour: ";
     cin >> payment;
 
     salary_count();
@@ -187,7 +187,7 @@ void Profit::input_profit()
 
 void Profit::show_profit()
 {
-    cout << "Profit: " << stonks_sum << endl;
+    cout << "Profit: " << stonks_sum << endl << endl;
 }
 
 int main()
@@ -205,6 +205,27 @@ int main()
     Master Julia;
     Julia.set_basic_info("Julia", "Petrova", 40);
     Julia.set_emplo_info("Manager", 22, 499);*/
+    Employer E1;
+    Employer E2;
+
+    E1.input_emplo_info();
+    E2.input_emplo_info();
+
+    Master M1;
+    M1.input_master_info();
+    
+    Profit May;
+    May.input_profit();
+ 
+    system("cls");
+
+    E1.show_emplo_info();
+    cout << endl;
+    E2.show_emplo_info();
+    cout << endl;
+    M1.show_master_info();
+    cout << endl;
+    May.show_profit();
 
     return 0;
 }
