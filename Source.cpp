@@ -18,17 +18,19 @@ public:
     Person()
     {
         age = 0;
-    };                                           
+    }                                          
     /* Constructor, overload */
-    Person(string stName, string ndName, int Age)          
+    Person(string stName, string ndName, int Age)
     {
         st_name = stName;
         nd_name = ndName;
         age = Age;
     }
-    void set_basic_info(string , string , int );
+
     void show_info_basic();
+    void input_basic_info();
 };
+
 /* Show info*/
 void Person::show_info_basic()                                   
 {
@@ -36,12 +38,22 @@ void Person::show_info_basic()
     cout << "Second name: " << nd_name << endl;
     cout << "Age: " << age << endl;
 }
-/* Setter */
-void Person::set_basic_info(string stName, string ndName, int Age)      
+/*  Input info */
+void Person::input_basic_info()
 {
-    st_name = stName;
-    nd_name = ndName;
-    age = Age;
+    cout << "Enter 1st name of worker: ";
+    cin >> st_name;
+    cout << "Enter 2nd name of woker: ";
+    cin >> nd_name;
+    while (1)
+    {
+        cout << "Enter age of worker: ";
+        cin >> age;
+        if (age > 0)
+        {
+            break;
+        }
+    }
 }
 
 class Employer:public Person
@@ -59,23 +71,26 @@ public:
     /* Constructor def */
     Employer()
     {
+        profession = "";
         payment = 0;
         hours = 0;
         salary = 0;
     }
-    /* Setter */
-    void set_emplo_info(string prof, float hrs, float slr)
+    /* Constructor overload */
+    Employer(string prfsn, float pmnt, float hrs)
     {
-        profession = prof;
+        profession = prfsn;
+        payment = pmnt;
         hours = hrs;
-        payment = slr;
-        salary_count();
+        salary = pmnt * hrs;
     }
 
     void salary_count();
     void show_emplo_info();
+    void input_emplo_info();
 };
 
+/* Method for finding salary */
 void Employer::salary_count()
 {
     salary = hours * payment;
@@ -89,6 +104,19 @@ void Employer::show_emplo_info()
     cout << "Salary: " << salary << endl << endl;
 }
 
+void Employer::input_emplo_info()
+{
+    input_basic_info();
+    cout << "Enter profession: ";
+    cin >> profession;
+    cout << "Enter hours for month: ";
+    cin >> hours;
+    cout << "Enter payment for hout: ";
+    cin >> payment;
+
+    salary_count();
+}
+
 class Master:public Employer
 {
 private:
@@ -100,13 +128,14 @@ public:
     {
         warnings_detected = 0;
     }
-    /* Setter */
-    void set_warnings(int wrngs)
+    /* Constructor overload */
+    Master(int warnings)
     {
-        warnings_detected = wrngs;
+        warnings_detected = warnings;
     }
 
     void show_master_info();
+    void input_master_info();
 };
 
 void Master::show_master_info()
@@ -115,15 +144,54 @@ void Master::show_master_info()
     cout << "Warnings detcted: " << warnings_detected << endl;
 }
 
-void input_info(Employer);
+void Master::input_master_info()
+{
+    input_emplo_info();
+    cout << "Enter number of warnings: ";
+    cin >> warnings_detected;
+}
+
+class Profit
+{
+private:
+    float stonks, not_stonks, stonks_sum;
+
+public:
+    /* Constructor def */
+    Profit()
+    {
+        stonks = 0;
+        not_stonks = 0;
+        stonks_sum = 0;
+    }
+    /* Constructor overload */
+    Profit (float stnks, float ntstnks)
+    {
+        stonks = stnks;
+        not_stonks = ntstnks;
+        stonks_sum = stonks - not_stonks;
+    }
+
+    void show_profit();
+    void input_profit();
+};
+
+void Profit::input_profit()
+{
+    cout << "Input profit: ";
+    cin >> stonks;
+    cout << "Input costs: ";
+    cin >> not_stonks;
+    stonks_sum = stonks - not_stonks;
+}
+
+void Profit::show_profit()
+{
+    cout << "Profit: " << stonks_sum << endl;
+}
 
 int main()
 {
-    Employer Alexey;
-    Alexey.set_basic_info("Olesya", "Tyan", 52);
-    input_info(Alexey);
-    Alexey.show_emplo_info();
-
    /* Employer Alexey;
     Alexey.set_basic_info("Alexey", "Petrov", 43);
     Alexey.set_emplo_info("Confectioner", 20, 500);
@@ -137,36 +205,6 @@ int main()
     Master Julia;
     Julia.set_basic_info("Julia", "Petrova", 40);
     Julia.set_emplo_info("Manager", 22, 499);*/
-    return 0;
-}
 
-/* Function for input */
-void input_info(Employer Name)
-{
-    string name_1, name_2, prof;
-    int age;
-    float payment, hours;
-    
-    cout << "Enter 1st name of worker: ";
-    cin >> name_1;
-    cout << "Enter 2nd name of woker: ";
-    cin >> name_2;
-    while (1)
-    {
-        cout << "Enter age of worker: ";
-        cin >> age;
-        if (age > 0)
-        {
-            break;
-        }
-    }
-    cout << "Enter profession: ";
-    cin >> prof;
-    cout << "Enter hours for month: ";
-    cin >> hours;
-    cout << "Enter payment for hour: ";
-    cin >> payment;
-    /* Calling methods */
-    Name.set_basic_info("Dima", name_2, age);
-    Name.set_emplo_info(prof, hours, payment);
+    return 0;
 }
