@@ -192,19 +192,6 @@ void Profit::show_profit()
 
 int main()
 {
-   /* Employer Alexey;
-    Alexey.set_basic_info("Alexey", "Petrov", 43);
-    Alexey.set_emplo_info("Confectioner", 20, 500);
-    Alexey.show_emplo_info();
-
-    Employer Dimas;
-    Dimas.set_basic_info("Dima", "Boganoff", 20);
-    Dimas.set_emplo_info("Courier", 15, 200);
-    Dimas.show_emplo_info();
-
-    Master Julia;
-    Julia.set_basic_info("Julia", "Petrova", 40);
-    Julia.set_emplo_info("Manager", 22, 499);*/
     Employer E1;
     Employer E2;
 
