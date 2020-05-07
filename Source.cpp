@@ -51,13 +51,13 @@ void Person::show_info_basic()
 //  Ввод информации о человеке
 void Person::input_basic_info()
 {
-    cout << "Enter 1st name of worker: ";
+    cout << "Enter 1st name: ";
     cin >> st_name;
-    cout << "Enter 2nd name of woker: ";
+    cout << "Enter 2nd name: ";
     cin >> nd_name;
     while (1)
     {
-        cout << "Enter age of worker: ";
+        cout << "Enter age: ";
         cin >> age;
         if (age > 0)
         {
@@ -226,13 +226,17 @@ int main()
     May.input_profit();
  
     system("cls");
-
+    
+    cout << "---Информация: заказчик---" << endl;
     E1.show_info_basic();
     cout << endl;
+    cout << "---Информация: сотрудник---" << endl;
     E2.show_emplo_info();
     cout << endl;
+    cout << "---Информация: менеджер---" << endl;
     M1.show_master_info();
     cout << endl;
+    cout << "---Информация: чистая прибыль---" << endl;
     May.show_profit();
 
     return 0;
