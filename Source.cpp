@@ -1,4 +1,9 @@
-﻿#include <iostream>
+﻿/* Анекдот:
+
+- Вы не боитесь умереть от коронавируса?
+- У меня кредит, откачают. */
+
+#include <iostream>
 #include <string>
 
 using std::cin;
@@ -6,20 +11,24 @@ using std::cout;
 using std::endl;
 using std::string;
 
+// Класс "человек"
 class Person
 {
 private:
-    string st_name;                                        
+    // Имя
+    string st_name;   
+    // Фамилия
     string nd_name;
+    // Возраст
     int age;
 
 public:
-    /* Constructor def */
+    // Конструктор по умолчанию
     Person()
     {
         age = 0;
     }                                          
-    /* Constructor, overload */
+    // Конструктор, перегрузка
     Person(string stName, string ndName, int Age)
     {
         st_name = stName;
@@ -27,18 +36,19 @@ public:
         age = Age;
     }
 
+    // Прототипы
     void show_info_basic();
     void input_basic_info();
 };
 
-/* Show info*/
+// Вывод информации о человеке
 void Person::show_info_basic()                                   
 {
     cout << "Firstname: " << st_name << endl;
     cout << "Second name: " << nd_name << endl;
     cout << "Age: " << age << endl;
 }
-/*  Input info */
+//  Ввод информации о человеке
 void Person::input_basic_info()
 {
     cout << "Enter 1st name of worker: ";
@@ -55,20 +65,21 @@ void Person::input_basic_info()
         }
     }
 }
-
+// Дочерний класс "рабочий"
 class Employer:public Person
 {
 private:
+    // Профессия
     string profession;
-    /* per hour */
+    // Оплата за час работы
     float payment;
-    /* Hours for month */
+    // Количество отработанных часов за месяц
     float hours;
-    /* for month */
+    // Итоговая зарплата
     float salary;
 
 public:
-    /* Constructor def */
+    // Конструктор по умолчанию
     Employer()
     {
         profession = "";
@@ -76,7 +87,7 @@ public:
         hours = 0;
         salary = 0;
     }
-    /* Constructor overload */
+    // Конструктор, перегрузка
     Employer(string prfsn, float pmnt, float hrs)
     {
         profession = prfsn;
@@ -84,20 +95,21 @@ public:
         hours = hrs;
         salary = pmnt * hrs;
     }
-
+    // Прототипы
     void salary_count();
     void show_emplo_info();
     void input_emplo_info();
 };
 
-/* Method for finding salary */
+// Метод нахождения зарплаты
 void Employer::salary_count()
 {
     salary = hours * payment;
 }
-
+// Метод вывода информации о работнике
 void Employer::show_emplo_info()
 {
+    // Вызов метода из родительского класса
     show_info_basic();
     cout << "Profession: " << profession << endl;
     cout << "Hours for month: " << hours << endl;
@@ -106,6 +118,7 @@ void Employer::show_emplo_info()
 
 void Employer::input_emplo_info()
 {
+    // Вызов метода из родительского класса
     input_basic_info();
     cout << "Enter profession: ";
     cin >> profession;
@@ -116,66 +129,72 @@ void Employer::input_emplo_info()
 
     salary_count();
 }
-
+// Дочерний класс "начальник"
 class Master:public Employer
 {
 private:
+    // Количество найденных нарушений
     int warnings_detected;
 
 public:
-    /* Constructor def */
+    // Конструктор по умолчанию
     Master()
     {
         warnings_detected = 0;
     }
-    /* Constructor overload */
+    // Конструктор, перегрузка
     Master(int warnings)
     {
         warnings_detected = warnings;
     }
-
+    // Прототипы
     void show_master_info();
     void input_master_info();
 };
-
+// Метод вывода информации о начальнике
 void Master::show_master_info()
 {
+    // Вызов метода из родительского класса
     show_emplo_info();
     cout << "Warnings detcted: " << warnings_detected << endl;
 }
-
+// Метод ввода информации о начальнике
 void Master::input_master_info()
 {
+    // Вызов метода из родительского класса
     input_emplo_info();
     cout << "Enter number of warnings: ";
     cin >> warnings_detected;
 }
-
+// Класс "прибыль"
 class Profit
 {
 private:
+    /* stonks - прибыль 
+     not_stonks - убытки 
+     stonks_sum - чистая прибыль */
     float stonks, not_stonks, stonks_sum;
 
 public:
-    /* Constructor def */
+    // Конструктор по умолчанию
     Profit()
     {
         stonks = 0;
         not_stonks = 0;
         stonks_sum = 0;
     }
-    /* Constructor overload */
+    // Конструктор, перегрузка
     Profit (float stnks, float ntstnks)
     {
         stonks = stnks;
         not_stonks = ntstnks;
         stonks_sum = stonks - not_stonks;
     }
-
+    // Прототипы
     void show_profit();
     void input_profit();
 };
-
+// Метод ввода информации
 void Profit::input_profit()
 {
     cout << "Input profit: ";
@@ -184,7 +203,7 @@ void Profit::input_profit()
     cin >> not_stonks;
     stonks_sum = stonks - not_stonks;
 }
-
+// Метод вывода информации
 void Profit::show_profit()
 {
     cout << "Profit: " << stonks_sum << endl << endl;
@@ -192,21 +211,23 @@ void Profit::show_profit()
 
 int main()
 {
-    Employer E1;
+    // Экземпляр класса "человек"
+    Person E1;
+    // Экземпляр класса "рабочий"
     Employer E2;
 
-    E1.input_emplo_info();
+    E1.input_basic_info();
     E2.input_emplo_info();
-
+    // Экземпляр класса "начальник"
     Master M1;
     M1.input_master_info();
-    
+    // Экземпляр класса "прибыль"
     Profit May;
     May.input_profit();
  
     system("cls");
 
-    E1.show_emplo_info();
+    E1.show_info_basic();
     cout << endl;
     E2.show_emplo_info();
     cout << endl;
