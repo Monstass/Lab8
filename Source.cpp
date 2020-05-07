@@ -224,19 +224,19 @@ int main()
     // Экземпляр класса "прибыль"
     Profit May;
     May.input_profit();
- 
+  
     system("cls");
     
-    cout << "---Информация: заказчик---" << endl;
+    cout << "--Information: customer---" << endl;
     E1.show_info_basic();
     cout << endl;
-    cout << "---Информация: сотрудник---" << endl;
+    cout << "---Information: employer---" << endl;
     E2.show_emplo_info();
     cout << endl;
-    cout << "---Информация: менеджер---" << endl;
+    cout << "---Information: manager---" << endl;
     M1.show_master_info();
     cout << endl;
-    cout << "---Информация: чистая прибыль---" << endl;
+    cout << "---Infromation: profit---" << endl;
     May.show_profit();
 
     return 0;
