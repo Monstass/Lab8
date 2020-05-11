@@ -1,9 +1,4 @@
-﻿/* Анекдот:
-
-- Вы не боитесь умереть от коронавируса?
-- У меня кредит, откачают. */
-
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 
 using std::cin;
@@ -65,7 +60,7 @@ void Person::input_basic_info()
         }
     }
 }
-// Дочерний класс "рабочий"
+// Дочерний класс "рабочий", наследует класс "человек"
 class Employer:public Person
 {
 private:
@@ -129,7 +124,7 @@ void Employer::input_emplo_info()
 
     salary_count();
 }
-// Дочерний класс "начальник"
+// Дочерний класс "начальник", наследует класс "рабочий" 
 class Master:public Employer
 {
 private:
@@ -215,28 +210,35 @@ int main()
     Person E1;
     // Экземпляр класса "рабочий"
     Employer E2;
-
+    // Вызов метода ввода информации, объект класса "человек"
     E1.input_basic_info();
+    // Вызов метода ввода информации, объект класса "рабочий"
     E2.input_emplo_info();
     // Экземпляр класса "начальник"
     Master M1;
+    // Вызов метода ввода информации, объект класса "начальник"
     M1.input_master_info();
     // Экземпляр класса "прибыль"
     Profit May;
+    // Вызов метода ввода информации, объект класса "прибыль"
     May.input_profit();
   
     system("cls");
     
     cout << "--Information: customer---" << endl;
+    // Вызов метода вывода информации, объект класса "человек"
     E1.show_info_basic();
     cout << endl;
     cout << "---Information: employer---" << endl;
+    // Вызов метода вывода информации, объект класса "рабочий"
     E2.show_emplo_info();
     cout << endl;
     cout << "---Information: manager---" << endl;
+    // Вызов метода вывода информации, объект класса "начальник"
     M1.show_master_info();
     cout << endl;
     cout << "---Infromation: profit---" << endl;
+    // Вызов метода вывода информации, объект класса "прибыль"
     May.show_profit();
 
     return 0;
